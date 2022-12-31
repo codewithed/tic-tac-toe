@@ -36,16 +36,27 @@ const game = {
   }
     const declareResult = () =>  {
         // check for vertical row
-        for(let i = 0; i > 3; i++) {
-            if (GameBoard.board[i] === 'X' && GameBoard.board[i+3] === 'X' && GameBoard.board[i+6] === 'X' || GameBoard.board[i] === 'O' && GameBoard.board[i+3] === 'O' && GameBoard.board[i+6] === 'O') {
-                return true;
+        for(let i = 0; i < 3; i++) {
+          for (let j = 0; j < 3; j++) {
+            if (GameBoard.board[i,j] === GameBoard.board[i,j+3] === GameBoard.board[i,j+6]){
+
             }
+          }
         }       
         // check for horizontal row 
-        for(let i = 0; i > 3; i++) {
-          if (GameBoard.board[i] === 'X' && GameBoard.board[i+3] === 'X' && GameBoard.board[i+6] === 'X' || GameBoard.board[i] === 'O' && GameBoard.board[i+3] === 'O' && GameBoard.board[i+6] === 'O') {
+        for(let i = 0; i < 3; i++) {
+          for (let j = 0; j < 3; j++) {
+            if (GameBoard.board[i,j] === GameBoard.board[i,j+1] === GameBoard.board[i,j+2]) {
               return true;
-          }
         } 
+      }
     }
+    // check for diagonal 
+    if (GameBoard.board[0,0] === GameBoard.board[1,1] === GameBoard.board[2,2]) {
+      return true;
+    }
+    if (GameBoard.board[0,2] === GameBoard.board[1,1] === GameBoard.board[2,0]) {
+      return true;
+    }
+  }     
 }
