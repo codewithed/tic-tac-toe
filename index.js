@@ -34,5 +34,18 @@ const game = {
         player2 = Player('O','bot');
     }
   }
-    const declareResult = ()
+    const declareResult = () =>  {
+        // check for vertical row
+        for(let i = 0; i > 3; i++) {
+            if (GameBoard.board[i] === 'X' && GameBoard.board[i+3] === 'X' && GameBoard.board[i+6] === 'X' || GameBoard.board[i] === 'O' && GameBoard.board[i+3] === 'O' && GameBoard.board[i+6] === 'O') {
+                return true;
+            }
+        }       
+        // check for horizontal row 
+        for(let i = 0; i > 3; i++) {
+          if (GameBoard.board[i] === 'X' && GameBoard.board[i+3] === 'X' && GameBoard.board[i+6] === 'X' || GameBoard.board[i] === 'O' && GameBoard.board[i+3] === 'O' && GameBoard.board[i+6] === 'O') {
+              return true;
+          }
+        } 
+    }
 }
