@@ -20,8 +20,8 @@ const Player = (playerName, playerType) => {
   return {choose, played}
 };
 
-// create Game object
-const game = {
+// create Game Module pattern
+const game = ({
   const start = (gameType) => {
     let player1;
     let player2;
@@ -35,22 +35,14 @@ const game = {
     }
   }
     const declareResult = () =>  {
-        // check for vertical row
-        for(let i = 0; i < 3; i++) {
-          for (let j = 0; j < 3; j++) {
-            if (GameBoard.board[i,j] === GameBoard.board[i,j+3] === GameBoard.board[i,j+6]){
+      // check for row
+      for(let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          if (GameBoard.board[i,j] === GameBoard.board[i,j+3] === GameBoard.board[i,j+6] || GameBoard.board[i,j] === GameBoard.board[i,j+1] === GameBoard.board[i,j+2]){
 
-            }
           }
-        }       
-        // check for horizontal row 
-        for(let i = 0; i < 3; i++) {
-          for (let j = 0; j < 3; j++) {
-            if (GameBoard.board[i,j] === GameBoard.board[i,j+1] === GameBoard.board[i,j+2]) {
-              return true;
-        } 
-      }
-    }
+        }
+      }       
     // check for diagonal 
     if (GameBoard.board[0,0] === GameBoard.board[1,1] === GameBoard.board[2,2]) {
       return true;
@@ -59,4 +51,4 @@ const game = {
       return true;
     }
   }     
-}
+})();

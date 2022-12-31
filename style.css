@@ -1,0 +1,34 @@
+:root {
+    background-color: yellow;
+    margin: 0;
+    padding: 0;
+    --largefont: 20px;
+    --largerfont: 25px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gameboard {
+    max-width: 80vw;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(60px, 1fr));
+    background-color: whitesmoke;
+}
+
+.gameboard > div {
+    border: 2px solid black;
+    font-size: var(--largefont);
+    font-weight: bold;
+    min-width: 60px;
+    min-height: 60px;
+}
+
+footer {
+    margin-top: 40px;
+    background-color: whitesmoke;
+    padding: 20px;
+}
