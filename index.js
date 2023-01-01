@@ -10,14 +10,13 @@ const GameBoard = (() => {
 })();
 
 const boxes = document.querySelectorAll('#box');
-for (let x = 0; x < boxes.length; x += 1) {
+boxes.forEach((box) => {
   for (let i = 0; i < 3; i += 1) {
     for (let j = 0; j < 3; j += 1) {
-      boxes[x].textContent = GameBoard.board[i][j];
+      box.textContent = GameBoard.board[i][j];
     }
   }
-}
-
+});
 /*
 // create Player factory function
 const player = (playerName, playerType) => {
