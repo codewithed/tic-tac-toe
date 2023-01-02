@@ -6,14 +6,7 @@ const GameBoard = (() => {
     ['', '', ''],
     ['', '', ''],
   ];
-  const select = (position, currentPlayer) => {
-    if (GameBoard.board[position] === '' && currentPlayer.played === false) {
-      GameBoard.board[position] = currentPlayer.name;
-      // eslint-disable-next-line no-param-reassign
-      currentPlayer.played = true;
-    }
-  };
-  return { board, select };
+  return { board };
 })();
 
 // create displayContoller module pattern
@@ -28,21 +21,35 @@ const displayController = (() => {
       }
     }
   };
+  return {
+    updateScreen,
+  };
 })();
 
 // create Player factory function
 const player = (playerName, playerType) => {
-  const played = false;
   const name = playerName;
   const type = playerType;
-  return { name, type, played };
+  return { name, type };
 };
 
 // create Game Module pattern
 const game = (() => {
-  const startGame = () => {
-    const playerX = player('X');
-    const playerO = player('O');
+  let currentPlayer;
+  const playerX = player('X');
+  const playerO = player('O');
+  currentPlayer = playerX;
+
+  const switchPlayer = () => {
+    if (currentPlayer === playerX) { currentPlayer = playerO; } else { currentPlayer = playerX; }
+  };
+
+  const select = (position, currentPlayer) => {
+    if (GameBoard.board[position] === '') {
+      GameBoard.board[position] = currentPlayer.name;
+      displayController.updateScreen();
+      game.switchPlayer();
+    }
   };
 
   const declareResult = () => {
@@ -65,6 +72,7 @@ const game = (() => {
       return true;
     }
   };
+  return { switchPlayer, declareResult, select };
 })();
 
 game.start();
