@@ -9,14 +9,18 @@ const GameBoard = (() => {
   return { board };
 })();
 
-const boxes = document.querySelectorAll('#box');
-for (let x = 0; x < boxes.length; x += 1) {
-  for (let i = 0; i < 3; i += 1) {
-    for (let j = 0; j < 3; j += 1) {
-      boxes[x].textContent = GameBoard.board[i][j];
+const displayController = () => {
+  const updateScreen = () => {
+    const boxes = document.querySelectorAll('#box');
+    let counter = 0;
+    for (let i = 0; i < 3; i += 1) {
+      for (let j = 0; j < 3; j += 1) {
+        boxes[counter].textContent = GameBoard.board[i][j];
+        counter += 1;
+      }
     }
-  }
-}
+  };
+};
 
 // create Player factory function
 const player = (playerName, playerType) => {
@@ -48,7 +52,10 @@ const game = (() => {
     // check for row
     for (let i = 0; i < 3; i += 1) {
       for (let j = 0; j < 3; j += 1) {
-        if (GameBoard.board[i][j] === GameBoard.board[i][j + 3] === GameBoard.board[i][j + 6] || GameBoard.board[i][j] === GameBoard.board[i][j + 1] === GameBoard.board[i][j + 2]) {
+        if (GameBoard.board[i][j] === GameBoard.board[i][j + 1] === GameBoard.board[i][j + 2]) {
+
+        }
+        if (GameBoard.board[i][j] === GameBoard.board[i][j + 3] === GameBoard.board[i][j + 6]) {
 
         }
       }
