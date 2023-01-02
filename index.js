@@ -3,10 +3,17 @@ const GameBoard = (() => {
   // create board which is a 3X3 array
   const board = [
     ['', '', ''],
-    ['', 'X', ''],
+    ['', '', ''],
     ['', '', ''],
   ];
-  return { board };
+  const select = (position, currentPlayer) => {
+    if (GameBoard.board[position] === '' && currentPlayer.played === false) {
+      GameBoard.board[position] = currentPlayer.name;
+      // eslint-disable-next-line no-param-reassign
+      currentPlayer.played = true;
+    }
+  };
+  return { board, select };
 })();
 
 // create displayContoller module pattern
@@ -25,28 +32,17 @@ const displayController = (() => {
 
 // create Player factory function
 const player = (playerName, playerType) => {
-  let played = false;
-  const choose = (position) => {
-    if (GameBoard.board[position] === '' && played === false) {
-      GameBoard.board[position] = playerName;
-      played = true;
-    }
-  };
-  return { choose, played };
+  const played = false;
+  const name = playerName;
+  const type = playerType;
+  return { name, type, played };
 };
 
 // create Game Module pattern
 const game = (() => {
-  const startGame = (gameType) => {
-    let player1;
-    let player2;
-    if (gameType === 'pvp') {
-      player1 = player('X', 'human');
-      player2 = player('O', 'human');
-    } else if (gameType === 'pvc') {
-      player1 = player('X', 'human');
-      player2 = player('O', 'bot');
-    }
+  const startGame = () => {
+    const playerX = player('X');
+    const playerO = player('O');
   };
 
   const declareResult = () => {
@@ -70,3 +66,5 @@ const game = (() => {
     }
   };
 })();
+
+game.start();
