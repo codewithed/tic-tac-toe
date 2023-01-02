@@ -9,7 +9,8 @@ const GameBoard = (() => {
   return { board };
 })();
 
-const displayController = () => {
+// create displayContoller module pattern
+const displayController = (() => {
   const updateScreen = () => {
     const boxes = document.querySelectorAll('#box');
     let counter = 0;
@@ -20,7 +21,7 @@ const displayController = () => {
       }
     }
   };
-};
+})();
 
 // create Player factory function
 const player = (playerName, playerType) => {
@@ -53,10 +54,10 @@ const game = (() => {
     for (let i = 0; i < 3; i += 1) {
       for (let j = 0; j < 3; j += 1) {
         if (GameBoard.board[i][j] === GameBoard.board[i][j + 1] === GameBoard.board[i][j + 2]) {
-
+          return true;
         }
         if (GameBoard.board[i][j] === GameBoard.board[i][j + 3] === GameBoard.board[i][j + 6]) {
-
+          return true;
         }
       }
     }
