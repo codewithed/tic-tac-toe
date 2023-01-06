@@ -36,20 +36,30 @@ const player = (playerName, playerType) => {
 // create Game Module pattern
 const game = (() => {
   let currentPlayer;
-  const playerX = player('X');
-  const playerO = player('O');
-  currentPlayer = playerX;
+  let playerX;
+  let playerO;
+  const start = () => {
+    // create player objects
+    playerX = player('X');
+    playerO = player('O');
+    currentPlayer = playerX;
+
+    // add game event listeners to tic-tac-toe boxes
+    const box = document.querySelectorAll('#box');
+    box.forEach((element) => {
+      element.addEventListener('click', () => {
+        const { position } = element.dataset.position;
+        if (GameBoard.board[position] === '') {
+          GameBoard.board[position] = currentPlayer.name;
+          displayController.updateScreen();
+          game.switchPlayer();
+        }
+      });
+    });
+  };
 
   const switchPlayer = () => {
     if (currentPlayer === playerX) { currentPlayer = playerO; } else { currentPlayer = playerX; }
-  };
-
-  const select = (position, currentPlayer) => {
-    if (GameBoard.board[position] === '') {
-      GameBoard.board[position] = currentPlayer.name;
-      displayController.updateScreen();
-      game.switchPlayer();
-    }
   };
 
   const declareResult = () => {
@@ -72,7 +82,9 @@ const game = (() => {
       return true;
     }
   };
-  return { switchPlayer, declareResult, select };
+  return {
+    start, switchPlayer, declareResult,
+  };
 })();
 
 game.start();
