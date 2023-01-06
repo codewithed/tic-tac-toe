@@ -51,9 +51,10 @@ const game = (() => {
     const box = document.querySelectorAll('#box');
     box.forEach((element) => {
       element.addEventListener('click', () => {
-        const position = element.getAttribute('data-position');
-        if (GameBoard.board[position] === '') {
-          GameBoard.board[position] = currentPlayer.name;
+        const { index1 } = element.dataset;
+        const { index2 } = element.dataset;
+        if (GameBoard.board[index1][index2] === '') {
+          GameBoard.board[index1][index2] = currentPlayer.name;
           displayController.updateScreen();
           game.switchPlayer();
         }
