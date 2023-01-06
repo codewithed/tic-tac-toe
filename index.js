@@ -38,17 +38,20 @@ const game = (() => {
   let currentPlayer;
   let playerX;
   let playerO;
+
+  // create player objects
   const start = () => {
-    // create player objects
     playerX = player('X');
     playerO = player('O');
     currentPlayer = playerX;
+  };
 
-    // add game event listeners to tic-tac-toe boxes
+  // add game event listeners to tic-tac-toe boxes
+  const addListeners = () => {
     const box = document.querySelectorAll('#box');
     box.forEach((element) => {
       element.addEventListener('click', () => {
-        const { position } = element.dataset.position;
+        const position = element.getAttribute('data-position');
         if (GameBoard.board[position] === '') {
           GameBoard.board[position] = currentPlayer.name;
           displayController.updateScreen();
@@ -83,8 +86,9 @@ const game = (() => {
     }
   };
   return {
-    start, switchPlayer, declareResult,
+    start, switchPlayer, declareResult, addListeners,
   };
 })();
 
 game.start();
+game.addListeners();
