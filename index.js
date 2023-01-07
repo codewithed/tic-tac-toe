@@ -90,6 +90,7 @@ const game = (() => {
     // check for row
     for (let i = 0; i < 3; i += 1) {
       for (let j = 0; j < 3; j += 1) {
+        // check for horizontal row
         if (GameBoard.board[i][j] === GameBoard.board[i][j + 1] && GameBoard.board[i][j + 1] === GameBoard.board[i][j + 2]) {
           if (GameBoard.board[i][j] !== '') {
             result.textContent = ` PLAYER ${GameBoard.board[i][j]} WINS`;
@@ -97,7 +98,8 @@ const game = (() => {
             result.addEventListener('click', game.reStart);
           }
         }
-        if (GameBoard.board[i][j] === GameBoard.board[i][j + 3] && GameBoard.board[i][j + 3] === GameBoard.board[i][j + 6]) {
+        // check for vertical row
+        if (GameBoard.board[i][j] === GameBoard.board[i + 1][j] && GameBoard.board[i + 1][j] === GameBoard.board[i + 2][j]) {
           if (GameBoard.board[i][j] !== '') {
             result.textContent = ` PLAYER ${GameBoard.board[i][j]} WINS`;
             result.classList.add('active');
