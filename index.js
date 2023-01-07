@@ -90,28 +90,36 @@ const game = (() => {
     // check for row
     for (let i = 0; i < 3; i += 1) {
       for (let j = 0; j < 3; j += 1) {
-        if (GameBoard.board[i][j] === GameBoard.board[i][j + 1] === GameBoard.board[i][j + 2]) {
-          result.textContent = ` PLAYER ${GameBoard.board[i][j]} WINS`;
-          result.classList.add('active');
-          result.addEventListener('click', game.reStart);
+        if (GameBoard.board[i][j] === GameBoard.board[i][j + 1] && GameBoard.board[i][j + 1] === GameBoard.board[i][j + 2]) {
+          if (GameBoard.board[i][j] !== '') {
+            result.textContent = ` PLAYER ${GameBoard.board[i][j]} WINS`;
+            result.classList.add('active');
+            result.addEventListener('click', game.reStart);
+          }
         }
-        if (GameBoard.board[i][j] === GameBoard.board[i][j + 3] === GameBoard.board[i][j + 6]) {
-          result.textContent = ` PLAYER ${GameBoard.board[i][j]} WINS`;
-          result.classList.add('active');
-          result.addEventListener('click', game.reStart);
+        if (GameBoard.board[i][j] === GameBoard.board[i][j + 3] && GameBoard.board[i][j + 3] === GameBoard.board[i][j + 6]) {
+          if (GameBoard.board[i][j] !== '') {
+            result.textContent = ` PLAYER ${GameBoard.board[i][j]} WINS`;
+            result.classList.add('active');
+            result.addEventListener('click', game.reStart);
+          }
         }
       }
     }
     // check for diagonal
-    if (GameBoard.board[0][0] === GameBoard.board[1][1] === GameBoard.board[2][2]) {
-      result.textContent = ` PLAYER ${GameBoard.board[0][0]} WINS`;
-      result.classList.add('active');
-      result.addEventListener('click', game.reStart);
+    if (GameBoard.board[0][0] === GameBoard.board[1][1] && GameBoard.board[1][1] === GameBoard.board[2][2]) {
+      if (GameBoard.board[0][0] !== '') {
+        result.textContent = ` PLAYER ${GameBoard.board[0][0]} WINS`;
+        result.classList.add('active');
+        result.addEventListener('click', game.reStart);
+      }
     }
-    if (GameBoard.board[0][2] === GameBoard.board[1][1] === GameBoard.board[2][0]) {
-      result.textContent = ` PLAYER ${GameBoard.board[0][2]} WINS`;
-      result.classList.add('active');
-      result.addEventListener('click', game.reStart);
+    if (GameBoard.board[0][2] === GameBoard.board[1][1] && GameBoard.board[1][1] === GameBoard.board[2][0]) {
+      if (GameBoard.board[0][2] !== '') {
+        result.textContent = ` PLAYER ${GameBoard.board[0][2]} WINS`;
+        result.classList.add('active');
+        result.addEventListener('click', game.reStart);
+      }
     } /* check for draw */ else if (!GameBoard.board[0].includes('') && !GameBoard.board[1].includes('') && !GameBoard.board[2].includes('')) {
       result.textContent = "IT'S A DRAW";
       result.classList.add('active');
