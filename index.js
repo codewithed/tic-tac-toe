@@ -11,7 +11,7 @@ const GameBoard = (() => {
 
 // create displayContoller module pattern
 const displayController = (() => {
-  const updateScreen = () => {
+  const updateBoardDisplay = () => {
     const boxes = document.querySelectorAll('#box');
     let counter = 0;
     for (let i = 0; i < 3; i += 1) {
@@ -21,8 +21,12 @@ const displayController = (() => {
       }
     }
   };
+  const removeResult = () => {
+    const result = document.getElementById('modal');
+    result.remove();
+  };
   return {
-    updateScreen,
+    updateBoardDisplay, removeResult,
   };
 })();
 
@@ -54,6 +58,8 @@ const game = (() => {
       ['', '', ''],
     ];
 
+    displayController.updateBoardDisplay();
+    displayController.removeResult();
     game.start();
   };
 
@@ -67,7 +73,7 @@ const game = (() => {
         const { index2 } = element.dataset;
         if (GameBoard.board[index1][index2] === '') {
           GameBoard.board[index1][index2] = currentPlayer.name;
-          displayController.updateScreen();
+          displayController.updateBoardDisplay();
           game.checkForResult();
           game.switchPlayer();
         }
@@ -106,7 +112,7 @@ const game = (() => {
       result.textContent = ` PLAYER ${GameBoard.board[0][2]} WINS`;
       result.classList.add('active');
       result.addEventListener('click', game.reStart);
-    } else if (!GameBoard.board.includes('')) {
+    } /* check for draw */ else if (!GameBoard.board[0].includes('') && !GameBoard.board[1].includes('') && !GameBoard.board[2].includes('')) {
       result.textContent = "IT'S A DRAW";
       result.classList.add('active');
       result.addEventListener('click', game.reStart);
