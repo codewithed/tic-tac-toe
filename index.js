@@ -93,15 +93,15 @@ const game = (() => {
         // check for horizontal row
         if (GameBoard.board[i][j] === GameBoard.board[i][j + 1] && GameBoard.board[i][j + 1] === GameBoard.board[i][j + 2]) {
           if (GameBoard.board[i][j] !== '') {
-            result.textContent = ` PLAYER ${GameBoard.board[i][j]} WINS`;
+            result.textContent = `PLAYER ${GameBoard.board[i][j]} WINS`;
             result.classList.add('active');
             result.addEventListener('click', game.reStart);
           }
         }
         // check for vertical row
-        if (GameBoard.board[i][j] === GameBoard.board[i + 1][j] && GameBoard.board[i + 1][j] === GameBoard.board[i + 2][j]) {
+        if (GameBoard.board[0][j] === GameBoard.board[1][j] && GameBoard.board[1][j] === GameBoard.board[2][j]) {
           if (GameBoard.board[i][j] !== '') {
-            result.textContent = ` PLAYER ${GameBoard.board[i][j]} WINS`;
+            result.textContent = `PLAYER ${GameBoard.board[i][j]} WINS`;
             result.classList.add('active');
             result.addEventListener('click', game.reStart);
           }
@@ -111,14 +111,14 @@ const game = (() => {
     // check for diagonal
     if (GameBoard.board[0][0] === GameBoard.board[1][1] && GameBoard.board[1][1] === GameBoard.board[2][2]) {
       if (GameBoard.board[0][0] !== '') {
-        result.textContent = ` PLAYER ${GameBoard.board[0][0]} WINS`;
+        result.textContent = `PLAYER ${GameBoard.board[0][0]} WINS`;
         result.classList.add('active');
         result.addEventListener('click', game.reStart);
       }
     }
     if (GameBoard.board[0][2] === GameBoard.board[1][1] && GameBoard.board[1][1] === GameBoard.board[2][0]) {
       if (GameBoard.board[0][2] !== '') {
-        result.textContent = ` PLAYER ${GameBoard.board[0][2]} WINS`;
+        result.textContent = `PLAYER ${GameBoard.board[0][2]} WINS`;
         result.classList.add('active');
         result.addEventListener('click', game.reStart);
       }
