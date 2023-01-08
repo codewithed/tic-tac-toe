@@ -23,7 +23,8 @@ const displayController = (() => {
   };
   const removeResult = () => {
     const result = document.getElementById('modal');
-    result.remove();
+    result.textContent = '';
+    result.classList.remove('active');
   };
   return {
     updateBoardDisplay, removeResult,
