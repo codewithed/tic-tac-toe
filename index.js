@@ -23,8 +23,10 @@ const displayController = (() => {
   };
   const removeResult = () => {
     const result = document.getElementById('modal');
+    const overlay = document.getElementById('overlay');
     result.textContent = '';
     result.classList.remove('active');
+    overlay.classList.remove('active');
   };
   return {
     updateBoardDisplay, removeResult,
@@ -88,6 +90,7 @@ const game = (() => {
 
   const checkForResult = () => {
     const result = document.getElementById('modal');
+    const overlay = document.getElementById('overlay');
     // check for row
     for (let i = 0; i < 3; i += 1) {
       for (let j = 0; j < 3; j += 1) {
@@ -95,6 +98,7 @@ const game = (() => {
         if (!GameBoard.board[0].includes('') && !GameBoard.board[1].includes('') && !GameBoard.board[2].includes('')) {
           result.textContent = "IT'S A DRAW";
           result.classList.add('active');
+          overlay.classList.add('active');
           result.addEventListener('click', game.reStart);
 
           // check for horizontal row
@@ -102,15 +106,20 @@ const game = (() => {
             if (GameBoard.board[i][j] !== '') {
               result.textContent = `PLAYER ${GameBoard.board[i][j]} WINS`;
               result.classList.add('active');
+              overlay.classList.add('active');
               result.addEventListener('click', game.reStart);
+              overlay.addEventListener('click', game.reStart);
             }
           }
+
           // check for vertical row
           if (GameBoard.board[0][j] === GameBoard.board[1][j] && GameBoard.board[1][j] === GameBoard.board[2][j]) {
             if (GameBoard.board[i][j] !== '') {
               result.textContent = `PLAYER ${GameBoard.board[i][j]} WINS`;
               result.classList.add('active');
+              overlay.classList.add('active');
               result.addEventListener('click', game.reStart);
+              overlay.addEventListener('click', game.reStart);
             }
           }
         }
@@ -120,14 +129,18 @@ const game = (() => {
         if (GameBoard.board[0][0] !== '') {
           result.textContent = `PLAYER ${GameBoard.board[0][0]} WINS`;
           result.classList.add('active');
+          overlay.classList.add('active');
           result.addEventListener('click', game.reStart);
+          overlay.addEventListener('click', game.reStart);
         }
       }
       if (GameBoard.board[0][2] === GameBoard.board[1][1] && GameBoard.board[1][1] === GameBoard.board[2][0]) {
         if (GameBoard.board[0][2] !== '') {
           result.textContent = `PLAYER ${GameBoard.board[0][2]} WINS`;
           result.classList.add('active');
+          overlay.classList.add('active');
           result.addEventListener('click', game.reStart);
+          overlay.addEventListener('click', game.reStart);
         }
       }
     }

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
 :root {
     background-color: yellow;
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     --largefont: 20px;
@@ -10,8 +11,8 @@
 
 .container {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     margin: 0;
 }
 
@@ -20,11 +21,11 @@
     width: 40vw;
     display: grid;
     grid-template-columns: repeat(3, minmax(60px, 1fr));
-    background-color: whitesmoke;
 }
 
 .gameboard > div {
     display: flex;
+    background-color: whitesmoke;
     justify-content: center;
     align-items: center;
     border: 2px solid black;
@@ -44,7 +45,43 @@ footer {
 }
 
 .modal {
+    background-color: whitesmoke;
+    padding: 40px 20px;
+    border-radius: 12px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    z-index: 10;
+    width: 300px;
+    max-width: 80%;
+    align-self: center;
+    margin: 0;
+    font-weight: 600;
+    font-size: 35px;
+    text-align: center;
+}
 
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right:0;
+    bottom: 0;
+    background-color: rgba(255, 233, 6, 0.5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    pointer-events: all;
+    opacity: 1;
 }
 
 h1 {
