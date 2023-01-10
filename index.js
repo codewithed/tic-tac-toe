@@ -136,6 +136,7 @@ const game = (() => {
             result.addEventListener('click', game.reStart);
             overlay.addEventListener('click', game.reStart);
           }
+        // eslint-disable-next-line brace-style
         }
 
         // check for draw
