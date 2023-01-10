@@ -68,6 +68,8 @@ const game = (() => {
 
   // add game event listeners to tic-tac-toe boxes
   const addListeners = () => {
+    const restartBtn = document.getElementById('restartBtn');
+    restartBtn.addEventListener('click', game.reStart);
     const box = document.querySelectorAll('#box');
     box.forEach((element) => {
       element.addEventListener('click', () => {

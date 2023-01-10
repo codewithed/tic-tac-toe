@@ -85,6 +85,16 @@ footer {
     pointer-events: none;
 }
 
+#restartBtn {
+    margin-top: 90px;
+    font-size: 28px;
+    color: white;
+    padding: 16px;
+    border-radius: 8px;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 0, 0, 0.761);
+}
+
 #overlay.active {
     pointer-events: all;
     opacity: 1;
@@ -92,7 +102,7 @@ footer {
 
 h1 {
     font-family: 'Times New Roman', Times, serif;
-    font-size: 35px;
+    font-size: 45px;
 }
 
 a {
